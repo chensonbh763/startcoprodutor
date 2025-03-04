@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Coprodutor</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js" defer></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js" defer></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js" defer></script>
+    <script type="module" src="js/main.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 20px;
+            width: 0;
+            background-color: #76c7c0;
+            text-align: center;
+            color: white;
+            line-height: 20px;
+            border-radius: 5px;
+            transition: width 0.3s;
+        }
+
+        .task {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .task button {
+            padding: 5px 10px;
+        }
+
+        .task input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Start Coprodutor</h1>
+        <p>Complete tarefas para entrar na coprodução!</p>
+        
+        <h2>Seu progresso</h2>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+            <div id="progress-text">0 tarefas concluídas</div>
+        </div>
+        
+        <h2>Perfis de Participantes</h2>
+
+        <div class="task">
+            <input type="checkbox" id="task-ganhar-redes">
+            <label for="task-ganhar-redes">Ganhar nas redes</label>
+            <button onclick="ir(this, 'task-ganhar-redes', 'https://www.ganharnasredes.com/?ref=421951')">Ir</button>
+        </div>
+        <div class="task">
+            <input type="checkbox" id="task-winzo">
+            <label for="task-winzo">Winzo</label>
+            <button onclick="ir(this, 'task-winzo', 'https://winzo.onelink.me/gu8K/qqt3lu9j')">Ir</button>
+        </div>
+        <div class="task">
+            <input type="checkbox" id="task-modatta">
+            <label for="task-modatta">Modatta</label>
+            <button onclick="ir(this, 'task-modatta', 'https://invite.modatta.com/?ref=AUYYYE')">Ir</button>
+        </div>
+        <div class="task">
+            <input type="checkbox" id="task-ngcash">
+            <label for="task-ngcash">NGCash</label>
+            <button onclick="ir(this, 'task-ngcash', 'https://ngcash.sng.link/Andua/a2og3/r_90a0af6d73')">Ir</button>
+        </div>
+        <div class="task">
+            <input type="checkbox" id="task-start-projeto">
+            <label for="task-start-projeto">Projeto Start</label>
+            <button onclick="copyLink('https://msha.ke/listaespera')">Copiar</button>
+        </div>
+        <div class="task">
+            <input type="checkbox" id="task-curtir-post">
+            <label for="task-curtir-post">Curtir post</label>
+            <button onclick="ir(this, 'task-curtir-post', 'https://www.instagram.com/p/DGl3QFmRxwa/')">Ir</button>
+        </div>
+        <div class="task">
+            <input type="checkbox" id="task-seguir-pagina">
+            <label for="task-seguir-pagina">Seguir página</label>
+            <button onclick="ir(this, 'task-seguir-pagina', 'https://www.instagram.com/felipe_coproducao/')">Ir</button>
+        </div>
+    </div>
+
+    <script>
+        let tasksCompleted = 0;
+
+        function ir(button, checkboxId, url) {
+            document.getElementById(checkboxId).checked = true;
+            tasksCompleted++;
+            updateProgress();
+            window.open(url, '_blank');
+        }
+
+        function updateProgress() {
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const totalTasks = 7; // Total de tarefas no seu código
+            
+            progressBar.style.width = (tasksCompleted / totalTasks) * 100 + '%';
+            progressText.textContent = `${tasksCompleted} de ${totalTasks} tarefas concluídas`;
+
+            if (tasksCompleted >= totalTasks) {
+                window.location.href = "https://wa.me/5531975766241?text=Ol%C3%A1%20tudo%20bem%20%2C%20completei%20o%20Start%20Coprodu%C3%A7%C3%A3o%20e%20queria%20mais%20detalhes";
+            }
+        }
+
+        function copyLink(url) {
+            navigator.clipboard.writeText(url);
+            alert('Link copiado para a área de transferência!');
+        }
+    </script>
+</body>
+</html>
